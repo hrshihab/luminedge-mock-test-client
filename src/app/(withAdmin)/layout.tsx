@@ -14,12 +14,11 @@ export default function DashboardLayout({
 }>) {
   return (
     <div className="min-h-screen my-2">
-      <div className="flex justify-around">
-        <div className="w-[20%] justify-start">
-          <SidebarAdmin />
-        </div>
-        <div className="w-[80%]  rounded-box ml-2">{children}</div>
+      <div className="flex"></div>
+      <div className="w-[20%] fixed  left-0 top-0  h-full">
+        <SidebarAdmin />
       </div>
+      <div className="w-[80%] ml-[22%] p-4 rounded-box ">{children}</div>
     </div>
   );
 }

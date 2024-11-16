@@ -2,6 +2,8 @@
 import { useState } from "react";
 import MultiDatePicker from "react-multi-date-picker";
 import DateObject from "react-date-object";
+import createSchedule from "@/app/utils/actions/createSchedule";
+import toast from "react-hot-toast";
 
 interface TimeSlot {
   startTime: string;
@@ -48,7 +50,7 @@ export default function CreateSchedulePage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const formattedData = formData.dates.map((date) => {
@@ -69,7 +71,37 @@ export default function CreateSchedulePage() {
       };
     });
 
-    console.log(formattedData);
+    try {
+      const data = await createSchedule(formattedData as any);
+      if (data.success) {
+        const successTable = data.successfulSchedules
+          .map(
+            (schedule) =>
+              `| ${schedule.courseId} | ${schedule.startDate} | Success |`
+          )
+          .join("\n");
+
+        const failureDetails = data.failedSchedules
+          .map(
+            (schedule) =>
+              `Date: ${schedule.startDate}, Time Slot: ${schedule.timeSlot} - Failed: `
+          )
+          .join("\n");
+
+        const successMessage = `Created Successfully:\n${successTable}`;
+        const failureMessage = `Failed to Create :\n${failureDetails}`;
+
+        toast.success(successMessage);
+        if (data.failedSchedules.length > 0) {
+          toast.error(failureMessage);
+        }
+      } else {
+        toast.error(data.message || "Failed to create schedule");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while creating the schedule");
+    }
   };
 
   return (
@@ -98,7 +130,7 @@ export default function CreateSchedulePage() {
 
         {/* Date Picker */}
         <div>
-          <label className="block mb-2 font-medium">Select Dates</label>
+          <label className="block mb-2 font-medium ">Select Dates</label>
           <MultiDatePicker
             value={formData.dates as any}
             onChange={(dates) =>

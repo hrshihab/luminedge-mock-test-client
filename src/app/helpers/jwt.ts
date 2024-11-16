@@ -9,8 +9,8 @@ interface CustomJwtPayload {
 
 export const getUserIdFromToken = () => {
   // Ensure that the code runs only on the client side
-  if (typeof window === "undefined") {
-    return null; // If running server-side, return null (or handle as needed)
+  if (typeof window === "undefined" || !window.localStorage) {
+    return null; // If running server-side or localStorage is not available
   }
 
   // Access the localStorage on the client side
@@ -23,18 +23,20 @@ export const getUserIdFromToken = () => {
 
   // Decode the token with type
   const decoded = jwtDecode<CustomJwtPayload>(accessToken);
+  //console.log("decoded", decoded);
 
-  if (decoded && decoded.userId) {
+  if (decoded) {
     return decoded;
   } else {
     console.error("userId not found in the token.");
     return null;
   }
 };
+
 export const getUserIdOnlyFromToken = () => {
   // Ensure that the code runs only on the client side
-  if (typeof window === "undefined") {
-    return null; // If running server-side, return null (or handle as needed)
+  if (typeof window === "undefined" || !window.localStorage) {
+    return null; // If running server-side or localStorage is not available
   }
 
   // Access the localStorage on the client side

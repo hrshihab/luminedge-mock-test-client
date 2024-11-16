@@ -43,7 +43,7 @@ const DashboardPage = () => {
 
   return (
     <div className="flex flex-col md:flex-row mx-auto gap-4">
-      <div className="w-full md:w-[120%]">
+      <div className="w-full md:w-3/5">
         <h1 className="text-2xl text-start my-4"> Dashboard </h1>
         <div className="flex flex-col p-4 bg-[#ffcb1e] rounded-box">
           <h1 className="text-2xl text-gray-50 font-bold mb-2">
@@ -54,8 +54,8 @@ const DashboardPage = () => {
             <br />
             Start a new goal and improve your result.
           </p>
-          <Link href="/courses">
-            <button className="bg-black text-white rounded-md p-2 w-28 my-2">
+          <Link href="/dashboard/courses">
+            <button className="bg-black text-white rounded-md p-2 w-full md:w-28 my-2">
               Book Now
             </button>
           </Link>
@@ -65,7 +65,7 @@ const DashboardPage = () => {
           <Table userId={userId || ""} />
         </div>
       </div>
-      <div className="w-full md:w-[70%] rounded-box">
+      <div className="w-full md:w-2/5 rounded-box">
         <div className="flex justify-end items-center gap-4 mr-8">
           <RxAvatar className="text-4xl" />
           <h1 className="text-xl text-start text-yellow-400 font-semibold my-4">

@@ -20,7 +20,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex">
+    <div className=" flex flex-col 2xl:w-[80%]   bg-stone-50 rounded-box ">
       <button onClick={toggleSidebar} className="p-2 md:hidden">
         {isOpen ? (
           <FaTimes className="h-6 w-6" />
@@ -30,7 +30,7 @@ const Sidebar = () => {
       </button>
 
       <div
-        className={`fixed md:static top-0 left-0 h-full w-64 bg-white md:bg-transparent  transform ${
+        className={`fixed md:static top-0 left-0 h-full bg-white px-2 rounded-lg  md:bg-transparent  transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
       >
@@ -76,7 +76,9 @@ const Sidebar = () => {
         <ul className="menu min-h-screen rounded-box">
           <li
             className={`hover:bg-[#FACE39] hover:text-black flex justify-center rounded-full ${
-              pathname === "/dashboard" ? "bg-[#FACE39] text-black" : ""
+              pathname === "/dashboard"
+                ? "bg-[#FACE39]  text-black font-semibold"
+                : ""
             }`}
           >
             <Link href="/dashboard" className="flex items-center px-4 py-3">
@@ -99,36 +101,36 @@ const Sidebar = () => {
           </li>
           <li className="hover:bg-[#FACE39] hover:text-black flex justify-center">
             <Link
-              href="/dashboard/user-info"
+              href="/dashboard/courses"
               className={`flex items-center px-4 py-3 ${
-                pathname === "/dashboard/user-info"
-                  ? "bg-[#FACE39] text-black"
+                pathname.toLowerCase() === "/dashboard/courses"
+                  ? "bg-[#FACE39] text-black font-semibold"
                   : ""
               }`}
             >
               <IoBagRemoveOutline className="h-5 w-5 mr-2" />
-              <span className="inline">Exam</span>
+              <span className="inline">Courses</span>
             </Link>
           </li>
           <li
             className={`hover:bg-[#FACE39] hover:text-black flex justify-center ${
-              pathname === "/dashboard/settings"
-                ? "bg-[#FACE39] text-black"
+              pathname.toLowerCase() === "/dashboard/exam-schedule"
+                ? "bg-[#FACE39] text-black font-semibold"
                 : ""
             }`}
           >
             <Link
-              href="/dashboard/settings"
+              href="/dashboard/exam-schedule"
               className="flex items-center px-4 py-3"
             >
               <TbMoneybag className="h-5 w-5 mr-2" />
-              <span className="inline">Policies</span>
+              <span className="inline">Exam Schedule</span>
             </Link>
           </li>
           <li
             className={`hover:bg-[#FACE39] hover:text-black flex justify-center ${
               pathname === "/dashboard/settings"
-                ? "bg-[#FACE39] text-black"
+                ? "bg-[#FACE39] text-black font-semibold"
                 : ""
             }`}
           >
@@ -143,7 +145,7 @@ const Sidebar = () => {
           <li
             className={`hover:bg-[#FACE39] hover:text-black flex justify-center ${
               pathname === "/dashboard/settings"
-                ? "bg-[#FACE39] text-black"
+                ? "bg-[#FACE39] text-black font-semibold"
                 : ""
             }`}
           >
@@ -158,7 +160,7 @@ const Sidebar = () => {
           <li
             className={`hover:bg-[#FACE39] hover:text-black flex justify-center ${
               pathname === "/dashboard/settings"
-                ? "bg-[#FACE39] text-black"
+                ? "bg-[#FACE39] text-black font-semibold"
                 : ""
             }`}
           >

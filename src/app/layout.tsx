@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body>
-        <div className="min-h-screen w-[100%] mx-auto">{children}</div>
+        <div className="min-h-screen max-w-[100%] mx-auto">{children}</div>
         <Toaster />
       </body>
     </html>
